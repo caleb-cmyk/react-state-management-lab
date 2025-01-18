@@ -1,7 +1,8 @@
 // src/App.jsx
 
 import { useState } from "react";
-import ZombieFighters from "./components/zombieFightersInfo";
+import ZombieFighter from "./components/ZombieFighter";
+import "./App.css"
 
 const App = () => {
   const [team, setTeam] = useState([]);
@@ -91,23 +92,21 @@ const App = () => {
     },
   ]);
 
-const handleAddFighter = (fighter) => {
-  const team = [...fighter]
-}
+const handleAddFighter = (zombieFighter) => {
+  setTeam([zombieFighter, ...team]);
+};
 
   return (
     <>
-      <h2>
-        money: {money}
-      </h2>
-      <p>
-        {zombieFighters.map((zombieFighter) => (
-          <ZombieFighters
-            key={zombieFighter.id}
-            zombieFighter={zombieFighter}
-          />
-        ))}
-      </p>
+    <h2>
+      Money: {money}
+    </h2>
+      {zombieFighters.map((zombieFighter) => (
+        <>
+          <ZombieFighter key={zombieFighter.id} zombieFighter={zombieFighter} />
+          <button onClick={() => handleAddFighter(zombieFighter)}>Add</button>
+        </>
+      ))}
     </>
   );
 };
